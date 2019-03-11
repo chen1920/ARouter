@@ -92,27 +92,6 @@ public final class ARouter {
         hasInit = false;
     }
 
-    /**
-     * The interface is not stable enough, use 'ARouter.inject();';
-     */
-    @Deprecated
-    public static synchronized void enableAutoInject() {
-        _ARouter.enableAutoInject();
-    }
-
-    @Deprecated
-    public static boolean canAutoInject() {
-        return _ARouter.canAutoInject();
-    }
-
-    /**
-     * The interface is not stable enough, use 'ARouter.inject();';
-     */
-    @Deprecated
-    public static void attachBaseContext() {
-        _ARouter.attachBaseContext();
-    }
-
     public static synchronized void monitorMode() {
         _ARouter.monitorMode();
     }
@@ -139,17 +118,6 @@ public final class ARouter {
      */
     public Postcard build(String path) {
         return _ARouter.getInstance().build(path);
-    }
-
-    /**
-     * Build the roadmap, draw a postcard.
-     *
-     * @param path  Where you go.
-     * @param group The group of path.
-     */
-    @Deprecated
-    public Postcard build(String path, String group) {
-        return _ARouter.getInstance().build(path, group);
     }
 
     /**

@@ -9,10 +9,8 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.alibaba.android.arouter.core.InstrumentationHook;
 import com.alibaba.android.arouter.core.LogisticsCenter;
 import com.alibaba.android.arouter.exception.HandlerException;
 import com.alibaba.android.arouter.exception.InitException;
@@ -30,8 +28,6 @@ import com.alibaba.android.arouter.utils.Consts;
 import com.alibaba.android.arouter.utils.DefaultLogger;
 import com.alibaba.android.arouter.utils.TextUtils;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
@@ -103,39 +99,6 @@ final class _ARouter {
     static synchronized void openLog() {
         logger.showLog(true);
         logger.info(Consts.TAG, "ARouter openLog");
-    }
-
-    @Deprecated
-    static synchronized void enableAutoInject() {
-        autoInject = true;
-    }
-
-    @Deprecated
-    static boolean canAutoInject() {
-        return autoInject;
-    }
-
-    @Deprecated
-    static void attachBaseContext() {
-        Log.i(Consts.TAG, "ARouter start attachBaseContext");
-        try {
-            Class<?> mMainThreadClass = Class.forName("android.app.ActivityThread");
-
-            // Get current main thread.
-            Method getMainThread = mMainThreadClass.getDeclaredMethod("currentActivityThread");
-            getMainThread.setAccessible(true);
-            Object currentActivityThread = getMainThread.invoke(null);
-
-            // The field contain instrumentation.
-            Field mInstrumentationField = mMainThreadClass.getDeclaredField("mInstrumentation");
-            mInstrumentationField.setAccessible(true);
-
-            // Hook current instrumentation
-            mInstrumentationField.set(currentActivityThread, new InstrumentationHook());
-            Log.i(Consts.TAG, "ARouter hook instrumentation success!");
-        } catch (Exception ex) {
-            Log.e(Consts.TAG, "ARouter hook instrumentation failed! [" + ex.getMessage() + "]");
-        }
     }
 
     static synchronized void printStackTrace() {

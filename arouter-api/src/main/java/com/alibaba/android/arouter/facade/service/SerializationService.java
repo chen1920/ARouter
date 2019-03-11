@@ -14,18 +14,6 @@ import java.lang.reflect.Type;
 public interface SerializationService extends IProvider {
 
     /**
-     * Parse json to object
-     *
-     * USE @parseObject PLEASE
-     *
-     * @param input json string
-     * @param clazz object type
-     * @return instance of object
-     */
-    @Deprecated
-    <T> T json2Object(String input, Class<T> clazz);
-
-    /**
      * Object to json
      *
      * @param instance obj
